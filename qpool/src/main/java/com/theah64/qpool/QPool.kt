@@ -1,5 +1,7 @@
 package com.theah64.qpool
 
+import com.theah64.qpool.questions.Question
+
 object QPool {
     private lateinit var questions: Array<out Question>
 

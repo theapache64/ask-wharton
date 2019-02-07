@@ -1,13 +1,7 @@
 package com.theah64.askwharton
 
-import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.Menu
-import android.view.MenuItem
-import com.theah64.qpool.*
-
-import kotlinx.android.synthetic.main.activity_main.*
+import com.theah64.qpool.questions.*
+import com.theah64.qpool.ui.activities.qpool.QPoolActivity
 
 class MainActivity : QPoolActivity() {
 
