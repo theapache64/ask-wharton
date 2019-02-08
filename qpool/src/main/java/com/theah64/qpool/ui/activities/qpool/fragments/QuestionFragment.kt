@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.FragmentQuestionBinding
@@ -34,6 +35,11 @@ class QuestionFragment : Fragment() {
         arguments?.let {
             val question = it.get(Question.KEY) as Question
             binding.question = question
+
+            // Loading image
+            Glide.with(binding.ivImage)
+                .load(question.imageUrl)
+                .into(binding.ivImage)
         }
 
         return binding.root

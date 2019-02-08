@@ -10,7 +10,8 @@ class MainActivity : QPoolActivity() {
         return arrayOf(
             // Name
             FactualQuestion(
-                question = R.string.q_name
+                question = R.string.q_name,
+                imageUrl = "https://i.stack.imgur.com/7VcXZ.jpg"
             ),
 
             // Age
