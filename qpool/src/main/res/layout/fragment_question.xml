@@ -4,8 +4,9 @@
     <data>
 
         <variable
-            name="question"
-            type="com.theah64.qpool.questions.Question" />
+            name="viewModel"
+            type="com.theah64.qpool.ui.activities.qpool.fragments.QuestionViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,7 +51,7 @@
                     android:id="@+id/tv_question"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{question.question}"
+                    android:text="@{viewModel.question.question}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +71,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
+                    android:onClick="@{()-> viewModel.onPrevButtonClicked()}"
                     android:text="@string/label_prev"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/b_next"
@@ -96,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
+                    android:onClick="@{()-> viewModel.onNextButtonClicked()}"
                     android:text="@string/label_next"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

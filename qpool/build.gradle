@@ -37,6 +37,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02'
+
     // ConstraintLayout
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
