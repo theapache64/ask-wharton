@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -95,6 +96,52 @@ class QuestionFragment : Fragment() {
             Glide.with(binding.ivImage)
                 .load(question.imageUrl)
                 .into(binding.ivImage)
+
+            if (question is RadioQuestion) {
+                // Setting radio listeners
+
+                val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        when (buttonView?.id) {
+
+                            R.id.mrb_option_1 -> {
+                                binding.mrbOption1.isChecked = true
+                                binding.mrbOption2.isChecked = false
+                                binding.mrbOption3.isChecked = false
+                                binding.mrbOption4.isChecked = false
+                            }
+
+                            R.id.mrb_option_2 -> {
+                                binding.mrbOption1.isChecked = false
+                                binding.mrbOption2.isChecked = true
+                                binding.mrbOption3.isChecked = false
+                                binding.mrbOption4.isChecked = false
+                            }
+
+                            R.id.mrb_option_3 -> {
+                                binding.mrbOption1.isChecked = false
+                                binding.mrbOption2.isChecked = false
+                                binding.mrbOption3.isChecked = true
+                                binding.mrbOption4.isChecked = false
+                            }
+
+
+                            R.id.mrb_option_4 -> {
+                                binding.mrbOption1.isChecked = false
+                                binding.mrbOption2.isChecked = false
+                                binding.mrbOption3.isChecked = false
+                                binding.mrbOption4.isChecked = true
+                            }
+                        }
+                    }
+                }
+
+
+                binding.mrbOption1.setOnCheckedChangeListener(listener)
+                binding.mrbOption2.setOnCheckedChangeListener(listener)
+                binding.mrbOption3.setOnCheckedChangeListener(listener)
+                binding.mrbOption4.setOnCheckedChangeListener(listener)
+            }
         }
 
 
