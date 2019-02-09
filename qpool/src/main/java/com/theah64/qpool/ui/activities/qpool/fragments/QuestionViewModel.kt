@@ -1,5 +1,6 @@
 package com.theah64.qpool.ui.activities.qpool.fragments
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,10 +18,17 @@ class QuestionViewModel : ViewModel() {
     lateinit var question: Question
 
     fun onPrevButtonClicked() {
-        buttonClicks.value = R.id.b_prev
+        Log.e("X", "Prev button clicked @vm")
+        buttonClicks.value = ID_PREV
     }
 
     fun onNextButtonClicked() {
-        buttonClicks.value = R.id.b_next
+        Log.e("X", "Next button clicked @vm")
+        buttonClicks.value = ID_NEXT
+    }
+
+    companion object {
+        const val ID_PREV = 1
+        const val ID_NEXT = 2
     }
 }

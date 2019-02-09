@@ -3,6 +3,7 @@ package com.theah64.qpool.ui.activities.qpool.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,40 @@ class QuestionFragment : Fragment() {
         this.callback = context as Callback
     }
 
+    private lateinit var viewModel: QuestionViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.viewModel = ViewModelProviders.of(this).get(QuestionViewModel::class.java)
+
+        // Watching for button clicks
+        viewModel.getButtonClicks().observe(this, Observer { buttonId ->
+
+            Log.e("X", "Button clicked trigger from vm to fragment")
+
+            when (buttonId) {
+
+                // Next
+                QuestionViewModel.ID_NEXT -> {
+
+                    Log.e("X", "Next button clicked @fragment")
+                    callback.onNextButtonClicked()
+                }
+
+                // Prev
+                QuestionViewModel.ID_PREV -> {
+
+                    Log.e("X", "Prev button clicked @fragment")
+                    callback.onPrevButtonClicked()
+                }
+
+                else -> throw IllegalArgumentException("Unmanaged click")
+            }
+
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +78,7 @@ class QuestionFragment : Fragment() {
         val binding =
             DataBindingUtil.inflate<FragmentQuestionBinding>(inflater, R.layout.fragment_question, container, false)
 
-        val viewModel = ViewModelProviders.of(this).get(QuestionViewModel::class.java)
+
 
         arguments?.let {
             val question = it.get(Question.KEY) as Question
@@ -56,28 +91,12 @@ class QuestionFragment : Fragment() {
         }
 
         binding.viewModel = viewModel
+        binding.setLifecycleOwner(this)
 
-        // Watching for button clicks
-        viewModel.getButtonClicks().observe(this, Observer { buttonId ->
-            when (buttonId) {
 
-                // Next
-                R.id.b_next -> {
-                    callback.onNextButtonClicked()
-                }
-
-                // Prev
-                R.id.b_prev -> {
-                    callback.onPrevButtonClicked()
-                }
-
-                else -> throw IllegalArgumentException("Unmanaged click")
-            }
-        })
 
         return binding.root
     }
-
 
     companion object {
         /**

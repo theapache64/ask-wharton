@@ -34,6 +34,9 @@ abstract class QPoolActivity : AppCompatActivity(), Callback {
     abstract fun getQuestions(): Array<out Question>
 
     override fun onNextButtonClicked() {
+
+        Log.e("X", "Next button clicked @act")
+
         val nextPos = binding.vpQuestions.currentItem + 1
         val totalPos = getQuestions().size
         if (nextPos < totalPos) {
@@ -44,6 +47,9 @@ abstract class QPoolActivity : AppCompatActivity(), Callback {
     }
 
     override fun onPrevButtonClicked() {
+
+        Log.e("X", "Prev button clicked @act")
+
         val prevPos = binding.vpQuestions.currentItem - 1
         if (prevPos > -1) {
             binding.vpQuestions.currentItem = prevPos

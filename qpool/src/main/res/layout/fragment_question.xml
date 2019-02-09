@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
-                    android:onClick="@{()-> viewModel.onPrevButtonClicked()}"
+                    android:onClick="@{() -> viewModel.onPrevButtonClicked()}"
                     android:text="@string/label_prev"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/b_next"
