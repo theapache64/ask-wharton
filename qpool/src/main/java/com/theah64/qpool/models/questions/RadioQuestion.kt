@@ -1,15 +1,12 @@
 package com.theah64.qpool.models.questions
 
-import androidx.annotation.StringRes
-
 open class RadioQuestion(
-    question: Int,
+    question: String,
 
-    @StringRes val option1: Int,
-    @StringRes val option2: Int,
-    @StringRes val option3: Int?,
-    @StringRes val option4: Int?,
+    val option1: String,
+    val option2: String,
+    val option3: String?,
+    val option4: String?,
 
     imageUrl: String? = null
-) : FactualQuestion(question, imageUrl) {
-}
+) : Question(question, imageUrl)

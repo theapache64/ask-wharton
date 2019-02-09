@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import java.io.Serializable
 
 open class Question(
-    @StringRes val question: Int,
+    val question: String,
     val imageUrl: String? = null
 ) : Serializable {
     companion object {

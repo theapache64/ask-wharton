@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="android.view.View" />
+
+        <import type="com.theah64.qpool.models.questions.FactualQuestion" />
+
+        <import type="com.theah64.qpool.models.questions.RadioQuestion" />
 
         <variable
             name="viewModel"
@@ -11,9 +17,7 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activities.qpool.fragments.QuestionFragment">
@@ -59,6 +63,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@tools:sample/lorem" />
 
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="til_input,radioGroup"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="144dp" />
+
                 <!--Text Input-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_input"
@@ -67,6 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/app_name"
+                    android:visibility="@{viewModel.question instanceof FactualQuestion ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_question">
@@ -78,6 +92,75 @@
                         android:text="@={viewModel.answer}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Radio Input-->
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.question instanceof RadioQuestion ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_question">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--Option 1-->
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mrb_option_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="@{viewModel.radioQuestion.option1}"
+                            app:layout_constraintEnd_toStartOf="@id/mrb_option_2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@tools:sample/lorem" />
+
+                        <!--Option 2-->
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mrb_option_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="@{viewModel.radioQuestion.option2}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/mrb_option_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@tools:sample/lorem" />
+
+                        <!--Option 3-->
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mrb_option_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="@{viewModel.radioQuestion.option3}"
+                            app:layout_constraintEnd_toStartOf="@id/mrb_option_4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/mrb_option_1"
+                            tools:text="@tools:sample/lorem" />
+
+                        <!--Option 4-->
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mrb_option_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="@{viewModel.radioQuestion.option4}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/mrb_option_3"
+                            app:layout_constraintTop_toBottomOf="@id/mrb_option_2"
+                            tools:text="@tools:sample/lorem" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RadioGroup>
 
                 <!--Prev Button-->
                 <com.google.android.material.button.MaterialButton
@@ -93,7 +176,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/b_next"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/til_input" />
+                    app:layout_constraintTop_toBottomOf="@id/barrier" />
 
                 <!--Next-->
                 <com.google.android.material.button.MaterialButton
@@ -108,7 +191,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/b_prev"
-                    app:layout_constraintTop_toBottomOf="@id/til_input" />
+                    app:layout_constraintTop_toBottomOf="@id/barrier" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

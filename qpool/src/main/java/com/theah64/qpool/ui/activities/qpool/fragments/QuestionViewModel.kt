@@ -4,12 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.theah64.qpool.models.questions.Question
+import com.theah64.qpool.models.questions.*
 
 class QuestionViewModel : ViewModel() {
 
     var isFirstQuestion: Boolean = false
     var isLastQuestion: Boolean = false
+    var currentRadioAnswer: String = ""
 
     private val buttonClicks = MutableLiveData<Int>()
     var answer: String = ""
@@ -18,7 +19,25 @@ class QuestionViewModel : ViewModel() {
         return buttonClicks
     }
 
-    lateinit var question: Question
+    var question: Question? = null
+        set(value) {
+
+            when (value) {
+
+                is FactualQuestion -> factualQuestion = value
+                is RadioQuestion -> radioQuestion = value
+                is CheckBoxQuestion -> checkBoxQuestion = value
+                is TimeQuestion -> timeQuestion = value
+                else -> throw IllegalArgumentException("Undefined question type")
+            }
+
+            field = value
+        }
+
+    var factualQuestion: FactualQuestion? = null
+    var radioQuestion: RadioQuestion? = null
+    var checkBoxQuestion: CheckBoxQuestion? = null
+    var timeQuestion: TimeQuestion? = null
 
     fun onPrevButtonClicked() {
         Log.e("X", "Prev button clicked @vm")
@@ -28,6 +47,10 @@ class QuestionViewModel : ViewModel() {
     fun onNextButtonClicked() {
         Log.e("X", "Next button clicked @vm")
         buttonClicks.value = ID_NEXT
+    }
+
+    fun getRadioQuestionField(): RadioQuestion {
+        return question as RadioQuestion
     }
 
     companion object {

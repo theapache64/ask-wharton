@@ -15,7 +15,9 @@ import com.bumptech.glide.Glide
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.FragmentQuestionBinding
 import com.theah64.qpool.models.Answer
+import com.theah64.qpool.models.questions.FactualQuestion
 import com.theah64.qpool.models.questions.Question
+import com.theah64.qpool.models.questions.RadioQuestion
 import com.theah64.qpool.ui.activities.qpool.Callback
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,7 +57,7 @@ class QuestionFragment : Fragment() {
 
                     Log.e("X", "Next button clicked @fragment")
                     callback.onNextButtonClicked(
-                        Answer(viewModel.question, viewModel.answer)
+                        Answer(viewModel.question!!, viewModel.answer)
                     )
                 }
 
