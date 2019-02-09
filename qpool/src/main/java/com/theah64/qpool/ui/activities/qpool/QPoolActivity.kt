@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.ActivityQpoolBinding
-import com.theah64.qpool.questions.Question
+import com.theah64.qpool.models.Answer
+import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.ui.activities.qpool.adapters.QuestionPagerAdapter
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
@@ -15,7 +16,7 @@ abstract class QPoolActivity : AppCompatActivity(), Callback {
 
     private lateinit var binding: ActivityQpoolBinding
     private lateinit var adapter: QuestionPagerAdapter
-
+    private val answersMap = mutableMapOf<Int, Answer>()
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
@@ -32,17 +33,27 @@ abstract class QPoolActivity : AppCompatActivity(), Callback {
     }
 
     abstract fun getQuestions(): Array<out Question>
+    abstract fun onSurveyFinished(answers: List<Answer>)
 
-    override fun onNextButtonClicked() {
+    override fun onNextButtonClicked(answer: Answer) {
+
 
         Log.e("X", "Next button clicked @act")
 
-        val nextPos = binding.vpQuestions.currentItem + 1
+        val currentItem = binding.vpQuestions.currentItem
+
+        // Saving answer
+        answersMap[currentItem] = answer
+
+
+        // Moving to next question
+        val nextPos = currentItem + 1
         val totalPos = getQuestions().size
         if (nextPos < totalPos) {
             binding.vpQuestions.currentItem = nextPos
         } else {
-            Log.d("X", "At the end, Submit")
+            // Survey finished
+            onSurveyFinished(answersMap.values.toList())
         }
     }
 
@@ -62,7 +73,7 @@ abstract class QPoolActivity : AppCompatActivity(), Callback {
 }
 
 interface Callback {
-    fun onNextButtonClicked()
+    fun onNextButtonClicked(answer: Answer)
     fun onPrevButtonClicked()
 }
 

@@ -1,4 +1,4 @@
-package com.theah64.qpool.questions
+package com.theah64.qpool.models.questions
 
 import androidx.annotation.StringRes
 

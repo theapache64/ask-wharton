@@ -1,4 +1,4 @@
-package com.theah64.qpool.questions
+package com.theah64.qpool.models.questions
 
 class CheckBoxQuestion(
     question: Int,

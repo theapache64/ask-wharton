@@ -4,12 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.theah64.qpool.R
-import com.theah64.qpool.questions.Question
+import com.theah64.qpool.models.questions.Question
 
 class QuestionViewModel : ViewModel() {
 
+    var isFirstQuestion: Boolean = false
+    var isLastQuestion: Boolean = false
+
     private val buttonClicks = MutableLiveData<Int>()
+    var answer: String = ""
 
     fun getButtonClicks(): LiveData<Int> {
         return buttonClicks

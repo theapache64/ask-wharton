@@ -13,7 +13,7 @@
         android:orientation="vertical"
         tools:context=".ui.activities.qpool.QPoolActivity">
 
-        <androidx.viewpager.widget.ViewPager
+        <com.theah64.qpool.utils.NonSwipeableViewPager
             android:id="@+id/vpQuestions"
             android:layout_width="0dp"
             android:layout_height="0dp"

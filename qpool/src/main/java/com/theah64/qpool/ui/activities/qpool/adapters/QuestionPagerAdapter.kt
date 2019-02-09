@@ -3,7 +3,7 @@ package com.theah64.qpool.ui.activities.qpool.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.theah64.qpool.questions.Question
+import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.ui.activities.qpool.fragments.QuestionFragment
 
 class QuestionPagerAdapter(
@@ -12,7 +12,7 @@ class QuestionPagerAdapter(
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return QuestionFragment.newInstance(questions[position])
+        return QuestionFragment.newInstance(questions[position], position == 0, position == (count - 1))
     }
 
     override fun getCount(): Int {

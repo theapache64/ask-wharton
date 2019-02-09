@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.theah64.qpool.ui.activities.qpool.fragments.QuestionViewModel" />
@@ -72,7 +74,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:text="@={viewModel.answer}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,6 +89,7 @@
                     android:layout_marginEnd="2dp"
                     android:onClick="@{() -> viewModel.onPrevButtonClicked()}"
                     android:text="@string/label_prev"
+                    android:visibility="@{viewModel.isFirstQuestion ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/b_next"
                     app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +104,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:onClick="@{()-> viewModel.onNextButtonClicked()}"
-                    android:text="@string/label_next"
+                    android:text="@{viewModel.isLastQuestion ? @string/label_finish : @string/label_next}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/b_prev"
