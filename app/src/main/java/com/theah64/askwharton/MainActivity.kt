@@ -31,11 +31,11 @@ class MainActivity : QPoolActivity() {
     override fun getQuestions(): Array<out Question> {
 
         return arrayOf(
-            // Name
+            /*// Name
             FactualQuestion(
                 question = getString(R.string.q_name),
                 imageUrl = "https://i.stack.imgur.com/7VcXZ.jpg"
-            ),
+            ),*/
 
             // Age
             RadioQuestion(
@@ -44,21 +44,21 @@ class MainActivity : QPoolActivity() {
                 option2 = getString(R.string.age_23),
                 option3 = getString(R.string.age_25),
                 option4 = getString(R.string.option_none_of_the_above)
-            ),
+            )
 
             // Hobby
-            CheckBoxQuestion(
-                question = getString(R.string.q_hobby),
-                option1 = getString(R.string.hobby_gaming),
-                option2 = getString(R.string.hobby_writing),
-                option3 = getString(R.string.hobby_reading),
-                option4 = getString(R.string.option_none_of_the_above)
-            ),
+            /* CheckBoxQuestion(
+                 question = getString(R.string.q_hobby),
+                 option1 = getString(R.string.hobby_gaming),
+                 option2 = getString(R.string.hobby_writing),
+                 option3 = getString(R.string.hobby_reading),
+                 option4 = getString(R.string.option_none_of_the_above)
+             ),*/
 
             // Sleep time
-            TimeQuestion(
+            /*TimeQuestion(
                 question = getString(R.string.What_time_do_you_sleep)
-            )
+            )*/
         )
     }
 }

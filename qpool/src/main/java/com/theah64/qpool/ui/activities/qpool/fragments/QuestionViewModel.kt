@@ -1,16 +1,20 @@
 package com.theah64.qpool.ui.activities.qpool.fragments
 
 import android.util.Log
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.theah64.qpool.models.questions.*
 
+
 class QuestionViewModel : ViewModel() {
 
     var isFirstQuestion: Boolean = false
     var isLastQuestion: Boolean = false
-    var currentRadioAnswer: String = ""
 
     private val buttonClicks = MutableLiveData<Int>()
     var answer: String = ""
@@ -21,6 +25,7 @@ class QuestionViewModel : ViewModel() {
 
     var question: Question? = null
         set(value) {
+
 
             when (value) {
 
@@ -49,9 +54,6 @@ class QuestionViewModel : ViewModel() {
         buttonClicks.value = ID_NEXT
     }
 
-    fun getRadioQuestionField(): RadioQuestion {
-        return question as RadioQuestion
-    }
 
     companion object {
         const val ID_PREV = 1

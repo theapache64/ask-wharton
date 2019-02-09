@@ -97,6 +97,8 @@ class QuestionFragment : Fragment() {
                 .into(binding.ivImage)
         }
 
+
+
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
 
