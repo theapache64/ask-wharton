@@ -94,7 +94,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Radio Input-->
-                <RadioGroup
+                <com.theah64.qpool.utils.NestedRadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -160,7 +160,60 @@
                             tools:text="@tools:sample/lorem" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </RadioGroup>
+                </com.theah64.qpool.utils.NestedRadioGroup>
+
+                <!--Checkbox input-->
+                <!--Option 1-->
+               <!-- <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/mcb_option_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="@{viewModel.radioQuestion.option1}"
+                    app:layout_constraintEnd_toStartOf="@id/mcb_option_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@tools:sample/lorem" />
+
+                &lt;!&ndash;Option 2&ndash;&gt;
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/mcb_option_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="@{viewModel.radioQuestion.option2}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mcb_option_1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@tools:sample/lorem" />
+
+                &lt;!&ndash;Option 3&ndash;&gt;
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/mcb_option_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="@{viewModel.radioQuestion.option3}"
+                    app:layout_constraintEnd_toStartOf="@id/mcb_option_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mcb_option_1"
+                    tools:text="@tools:sample/lorem" />
+
+                &lt;!&ndash;Option 4&ndash;&gt;
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/mcb_option_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="@{viewModel.radioQuestion.option4}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mcb_option_3"
+                    app:layout_constraintTop_toBottomOf="@id/mcb_option_2"
+                    tools:text="@tools:sample/lorem" />-->
 
                 <!--Prev Button-->
                 <com.google.android.material.button.MaterialButton

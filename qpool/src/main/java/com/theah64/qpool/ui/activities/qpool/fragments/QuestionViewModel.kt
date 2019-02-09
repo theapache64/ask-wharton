@@ -19,6 +19,11 @@ class QuestionViewModel : ViewModel() {
     private val buttonClicks = MutableLiveData<Int>()
     var answer: String = ""
 
+    var option1 = false
+    var option2 = false
+    var option3 = false
+    var option4 = false
+
     fun getButtonClicks(): LiveData<Int> {
         return buttonClicks
     }

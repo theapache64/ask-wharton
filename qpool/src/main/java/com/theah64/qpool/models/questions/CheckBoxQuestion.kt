@@ -1,7 +1,5 @@
 package com.theah64.qpool.models.questions
 
-import androidx.databinding.ObservableInt
-
 class CheckBoxQuestion(
     question: String,
     option1: String,

@@ -56,6 +56,12 @@ class QuestionFragment : Fragment() {
                 // Next
                 QuestionViewModel.ID_NEXT -> {
 
+
+                    if (viewModel.question is RadioQuestion) {
+                        // It was a radio question, so manually setting answer variable
+                        viewModel.answer = binding.radioGroup.checkedRadioButton?.text as String
+                    }
+
                     Log.e("X", "Next button clicked @fragment")
                     callback.onNextButtonClicked(
                         Answer(viewModel.question!!, viewModel.answer)
@@ -75,14 +81,16 @@ class QuestionFragment : Fragment() {
         })
     }
 
+    lateinit var binding: FragmentQuestionBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
-        val binding =
-            DataBindingUtil.inflate<FragmentQuestionBinding>(inflater, R.layout.fragment_question, container, false)
+        this.binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
 
 
         arguments?.let {
@@ -96,52 +104,6 @@ class QuestionFragment : Fragment() {
             Glide.with(binding.ivImage)
                 .load(question.imageUrl)
                 .into(binding.ivImage)
-
-            if (question is RadioQuestion) {
-                // Setting radio listeners
-
-                val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        when (buttonView?.id) {
-
-                            R.id.mrb_option_1 -> {
-                                binding.mrbOption1.isChecked = true
-                                binding.mrbOption2.isChecked = false
-                                binding.mrbOption3.isChecked = false
-                                binding.mrbOption4.isChecked = false
-                            }
-
-                            R.id.mrb_option_2 -> {
-                                binding.mrbOption1.isChecked = false
-                                binding.mrbOption2.isChecked = true
-                                binding.mrbOption3.isChecked = false
-                                binding.mrbOption4.isChecked = false
-                            }
-
-                            R.id.mrb_option_3 -> {
-                                binding.mrbOption1.isChecked = false
-                                binding.mrbOption2.isChecked = false
-                                binding.mrbOption3.isChecked = true
-                                binding.mrbOption4.isChecked = false
-                            }
-
-
-                            R.id.mrb_option_4 -> {
-                                binding.mrbOption1.isChecked = false
-                                binding.mrbOption2.isChecked = false
-                                binding.mrbOption3.isChecked = false
-                                binding.mrbOption4.isChecked = true
-                            }
-                        }
-                    }
-                }
-
-
-                binding.mrbOption1.setOnCheckedChangeListener(listener)
-                binding.mrbOption2.setOnCheckedChangeListener(listener)
-                binding.mrbOption3.setOnCheckedChangeListener(listener)
-                binding.mrbOption4.setOnCheckedChangeListener(listener)
-            }
         }
 
 
