@@ -1,10 +1,6 @@
 package com.theah64.qpool.ui.activities.qpool.fragments
 
 import android.util.Log
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import androidx.databinding.Observable
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,14 +11,11 @@ class QuestionViewModel : ViewModel() {
 
     var isFirstQuestion: Boolean = false
     var isLastQuestion: Boolean = false
+    lateinit var textPerc: String
+    var intPerc: Int = 0
 
     private val buttonClicks = MutableLiveData<Int>()
     var answer: String = ""
-
-    var option1 = false
-    var option2 = false
-    var option3 = false
-    var option4 = false
 
     fun getButtonClicks(): LiveData<Int> {
         return buttonClicks
@@ -57,6 +50,16 @@ class QuestionViewModel : ViewModel() {
     fun onNextButtonClicked() {
         Log.e("X", "Next button clicked @vm")
         buttonClicks.value = ID_NEXT
+    }
+
+    fun setQuestionPositions(curPosQues: Int, totalQuestions: Int) {
+        isFirstQuestion = curPosQues == 0
+        isLastQuestion = curPosQues == (totalQuestions - 1)
+        textPerc = "${curPosQues + 1}/$totalQuestions"
+        val x = ((curPosQues + 1) * 100) / totalQuestions
+        intPerc = x
+
+
     }
 
 

@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +16,6 @@ import com.theah64.qpool.R
 import com.theah64.qpool.databinding.FragmentQuestionBinding
 import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.CheckBoxQuestion
-import com.theah64.qpool.models.questions.FactualQuestion
 import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.models.questions.RadioQuestion
 import com.theah64.qpool.ui.activities.qpool.Callback
@@ -121,8 +119,9 @@ class QuestionFragment : Fragment() {
         arguments?.let {
             val question = it.get(Question.KEY) as Question
             viewModel.question = question
-            viewModel.isFirstQuestion = it.getBoolean(KEY_IS_FIRST_QUESTION)
-            viewModel.isLastQuestion = it.getBoolean(KEY_IS_LAST_QUESTION)
+            val curPosQues = it.getInt(KEY_CURRENT_QUESTION_POSITION)
+            val totalQuestions = it.getInt(KEY_TOTAL_QUESTIONS)
+            viewModel.setQuestionPositions(curPosQues, totalQuestions)
 
 
             // Loading image
@@ -141,18 +140,18 @@ class QuestionFragment : Fragment() {
 
     companion object {
 
-        const val KEY_IS_FIRST_QUESTION = "is_first_question"
-        const val KEY_IS_LAST_QUESTION = "is_last_question"
+        const val KEY_CURRENT_QUESTION_POSITION = "current_question_position"
+        const val KEY_TOTAL_QUESTIONS = "total_questions"
 
         /**
          * Creates new instance of the question fragment
          */
-        fun newInstance(question: Question, isFirstQuestion: Boolean, isLastQuestion: Boolean): QuestionFragment {
+        fun newInstance(question: Question, curQuesPos: Int, totalQuestions: Int): QuestionFragment {
             val fragment = QuestionFragment()
             val args = Bundle()
             args.putSerializable(Question.KEY, question)
-            args.putBoolean(KEY_IS_FIRST_QUESTION, isFirstQuestion)
-            args.putBoolean(KEY_IS_LAST_QUESTION, isLastQuestion)
+            args.putInt(KEY_CURRENT_QUESTION_POSITION, curQuesPos)
+            args.putInt(KEY_TOTAL_QUESTIONS, totalQuestions)
             fragment.arguments = args
             return fragment
         }

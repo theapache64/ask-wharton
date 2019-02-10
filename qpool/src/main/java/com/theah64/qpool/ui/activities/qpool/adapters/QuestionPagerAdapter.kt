@@ -12,7 +12,7 @@ class QuestionPagerAdapter(
 ) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return QuestionFragment.newInstance(questions[position], position == 0, position == (count - 1))
+        return QuestionFragment.newInstance(questions[position], position, count)
     }
 
     override fun getCount(): Int {
