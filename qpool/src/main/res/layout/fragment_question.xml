@@ -11,6 +11,8 @@
 
         <import type="com.theah64.qpool.models.questions.RadioQuestion" />
 
+        <import type="com.theah64.qpool.models.questions.CheckBoxQuestion" />
+
         <variable
             name="viewModel"
             type="com.theah64.qpool.ui.activities.qpool.fragments.QuestionViewModel" />
@@ -68,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="til_input,radioGroup"
+                    app:constraint_referenced_ids="til_input,radioGroup,mcb_option_2,mcb_option_4,mcb_option_1,mcb_option_3"
                     tools:layout_editor_absoluteX="10dp"
                     tools:layout_editor_absoluteY="144dp" />
 
@@ -162,58 +164,59 @@
 
                 </com.theah64.qpool.utils.NestedRadioGroup>
 
+
                 <!--Checkbox input-->
                 <!--Option 1-->
-               <!-- <com.google.android.material.checkbox.MaterialCheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/mcb_option_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
-                    android:text="@{viewModel.radioQuestion.option1}"
+                    android:text="@{viewModel.checkBoxQuestion.option1}"
                     app:layout_constraintEnd_toStartOf="@id/mcb_option_2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_question"
                     tools:text="@tools:sample/lorem" />
 
-                &lt;!&ndash;Option 2&ndash;&gt;
+                <!--Option 2-->
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/mcb_option_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
-                    android:text="@{viewModel.radioQuestion.option2}"
+                    android:text="@{viewModel.checkBoxQuestion.option2}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mcb_option_1"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_question"
                     tools:text="@tools:sample/lorem" />
 
-                &lt;!&ndash;Option 3&ndash;&gt;
+                <!--Option 3-->
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/mcb_option_3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
-                    android:text="@{viewModel.radioQuestion.option3}"
+                    android:text="@{viewModel.checkBoxQuestion.option3}"
                     app:layout_constraintEnd_toStartOf="@id/mcb_option_4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/mcb_option_1"
                     tools:text="@tools:sample/lorem" />
 
-                &lt;!&ndash;Option 4&ndash;&gt;
+                <!--Option 4-->
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/mcb_option_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
-                    android:text="@{viewModel.radioQuestion.option4}"
+                    android:text="@{viewModel.checkBoxQuestion.option4}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mcb_option_3"
                     app:layout_constraintTop_toBottomOf="@id/mcb_option_2"
-                    tools:text="@tools:sample/lorem" />-->
+                    tools:text="@tools:sample/lorem" />
 
                 <!--Prev Button-->
                 <com.google.android.material.button.MaterialButton
@@ -230,6 +233,14 @@
                     app:layout_constraintEnd_toStartOf="@id/b_next"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/gCheckBoxes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.question instanceof CheckBoxQuestion ? View.VISIBLE : View.GONE}"
+                    app:constraint_referenced_ids="mcb_option_2,mcb_option_4,mcb_option_1,mcb_option_3" />
 
                 <!--Next-->
                 <com.google.android.material.button.MaterialButton

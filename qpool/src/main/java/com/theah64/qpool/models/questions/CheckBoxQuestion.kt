@@ -1,11 +1,13 @@
 package com.theah64.qpool.models.questions
 
-class CheckBoxQuestion(
+open class CheckBoxQuestion(
     question: String,
-    option1: String,
-    option2: String,
-    option3: String?,
-    option4: String?,
+
+    val option1: String,
+    val option2: String,
+    val option3: String?,
+    val option4: String?,
+
     imageUrl: String? = null
 ) :
-    RadioQuestion(question, option1, option2, option3, option4, imageUrl)
+    Question(question, imageUrl)

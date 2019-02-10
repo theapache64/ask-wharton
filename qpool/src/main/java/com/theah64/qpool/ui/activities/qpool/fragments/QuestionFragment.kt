@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.FragmentQuestionBinding
 import com.theah64.qpool.models.Answer
+import com.theah64.qpool.models.questions.CheckBoxQuestion
 import com.theah64.qpool.models.questions.FactualQuestion
 import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.models.questions.RadioQuestion
@@ -59,7 +60,14 @@ class QuestionFragment : Fragment() {
 
                     if (viewModel.question is RadioQuestion) {
                         // It was a radio question, so manually setting answer variable
-                        viewModel.answer = binding.radioGroup.checkedRadioButton?.text as String
+                        val checkedRadioButton = binding.radioGroup.checkedRadioButton
+                        checkedRadioButton?.let {
+                            viewModel.answer = it.text as String
+                        }
+                    }
+
+                    if (viewModel.question is CheckBoxQuestion) {
+                        viewModel.answer = getCheckBoxAnswer()
                     }
 
                     Log.e("X", "Next button clicked @fragment")
@@ -79,6 +87,23 @@ class QuestionFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun getCheckBoxAnswer(): String {
+        val stringBuilder = StringBuilder()
+        val mcbs = arrayOf(
+            binding.mcbOption1,
+            binding.mcbOption2,
+            binding.mcbOption3,
+            binding.mcbOption4
+        )
+
+        mcbs.forEach { mcb ->
+            if (mcb.isChecked) {
+                stringBuilder.append(mcb.text).append(",")
+            }
+        }
+        return if (stringBuilder.isEmpty()) "" else stringBuilder.substring(0, stringBuilder.length - 1)
     }
 
     lateinit var binding: FragmentQuestionBinding
