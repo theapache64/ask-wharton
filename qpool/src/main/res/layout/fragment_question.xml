@@ -116,6 +116,8 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!--Time input-->
+
                 <!--Radio Input-->
                 <com.theah64.qpool.utils.NestedRadioGroup
                     android:id="@+id/radioGroup"

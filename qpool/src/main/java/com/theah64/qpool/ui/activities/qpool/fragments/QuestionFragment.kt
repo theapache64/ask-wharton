@@ -133,7 +133,7 @@ class QuestionFragment : Fragment() {
 
 
         binding.viewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         return binding.root
     }
