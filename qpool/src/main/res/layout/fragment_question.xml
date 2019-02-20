@@ -152,6 +152,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_marginEnd="2dp"
                             android:text="@{viewModel.radioQuestion.option1}"
+                            app:buttonTint="?attr/colorPrimary"
                             app:layout_constraintEnd_toStartOf="@id/mrb_option_2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -165,6 +166,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_marginEnd="2dp"
                             android:text="@{viewModel.radioQuestion.option2}"
+                            app:buttonTint="?attr/colorPrimary"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/mrb_option_1"
                             app:layout_constraintTop_toTopOf="parent"
@@ -178,6 +180,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_marginEnd="2dp"
                             android:text="@{viewModel.radioQuestion.option3}"
+                            app:buttonTint="?attr/colorPrimary"
                             app:layout_constraintEnd_toStartOf="@id/mrb_option_4"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/mrb_option_1"
@@ -191,6 +194,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_marginEnd="2dp"
                             android:text="@{viewModel.radioQuestion.option4}"
+                            app:buttonTint="?attr/colorPrimary"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/mrb_option_3"
                             app:layout_constraintTop_toBottomOf="@id/mrb_option_2"
@@ -209,6 +213,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:text="@{viewModel.checkBoxQuestion.option1}"
+                    app:buttonTint="?attr/colorPrimary"
                     app:layout_constraintEnd_toStartOf="@id/mcb_option_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_question"
@@ -222,6 +227,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:text="@{viewModel.checkBoxQuestion.option2}"
+                    app:buttonTint="?attr/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mcb_option_1"
                     app:layout_constraintTop_toBottomOf="@id/tv_question"
@@ -235,6 +241,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:text="@{viewModel.checkBoxQuestion.option3}"
+                    app:buttonTint="?attr/colorPrimary"
                     app:layout_constraintEnd_toStartOf="@id/mcb_option_4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/mcb_option_1"
@@ -248,16 +255,11 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:text="@{viewModel.checkBoxQuestion.option4}"
+                    app:buttonTint="?attr/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mcb_option_3"
                     app:layout_constraintTop_toBottomOf="@id/mcb_option_2"
                     tools:text="@tools:sample/lorem" />
-
-                <!--Time Input-->
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.answer}" />
 
                 <!--Prev Button-->
                 <com.google.android.material.button.MaterialButton

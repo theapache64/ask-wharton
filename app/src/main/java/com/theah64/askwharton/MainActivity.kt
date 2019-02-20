@@ -30,6 +30,7 @@ class MainActivity : QPoolActivity() {
 
     override fun getQuestions(): Array<out Question> {
 
+        //TODO: Replace dummy questions with real questions
         return arrayOf(
             // Name
             FactualQuestion(

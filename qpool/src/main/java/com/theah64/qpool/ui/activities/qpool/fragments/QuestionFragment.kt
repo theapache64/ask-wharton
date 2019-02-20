@@ -20,6 +20,7 @@ import com.theah64.qpool.models.questions.CheckBoxQuestion
 import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.models.questions.RadioQuestion
 import com.theah64.qpool.ui.activities.qpool.Callback
+import kotlinx.android.synthetic.main.fragment_question.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,18 +90,20 @@ class QuestionFragment : Fragment() {
 
         // Watching for time input click
         viewModel.getTimeInputClick().observe(this, Observer { isShow ->
-            val dialog = TimePickerDialog(
-                this.activity,
-                TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                    viewModel.answer = "$hourOfDay:$minute"
-                    callback.onNextButtonClicked(Answer(viewModel.question!!, viewModel.answer))
-                },
-                0,
-                0,
-                false
-            )
+            if (isShow) {
+                val dialog = TimePickerDialog(
+                    this.activity,
+                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        viewModel.answer = "$hourOfDay:$minute"
+                        mb_time.text = viewModel.answer
+                    },
+                    0,
+                    0,
+                    false
+                )
 
-            dialog.show()
+                dialog.show()
+            }
         })
     }
 
