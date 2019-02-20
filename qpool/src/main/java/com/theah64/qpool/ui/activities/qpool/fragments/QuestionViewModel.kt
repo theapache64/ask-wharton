@@ -15,6 +15,7 @@ class QuestionViewModel : ViewModel() {
     var intPerc: Int = 0
 
     private val buttonClicks = MutableLiveData<Int>()
+    private val timeInputClicked = MutableLiveData<Boolean>()
     var answer: String = ""
 
     fun getButtonClicks(): LiveData<Int> {
@@ -51,6 +52,12 @@ class QuestionViewModel : ViewModel() {
         Log.e("X", "Next button clicked @vm")
         buttonClicks.value = ID_NEXT
     }
+
+    fun onTimeInputClicked() {
+        timeInputClicked.value = true
+    }
+
+    fun getTimeInputClick(): LiveData<Boolean> = timeInputClicked
 
     fun setQuestionPositions(curPosQues: Int, totalQuestions: Int) {
         isFirstQuestion = curPosQues == 0

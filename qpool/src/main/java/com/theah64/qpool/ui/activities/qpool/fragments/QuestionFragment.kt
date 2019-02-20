@@ -1,6 +1,7 @@
 package com.theah64.qpool.ui.activities.qpool.fragments
 
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -58,7 +59,7 @@ class QuestionFragment : Fragment() {
 
                     if (viewModel.question is RadioQuestion) {
                         // It was a radio question, so manually setting answer variable
-                        val checkedRadioButton = binding.radioGroup.checkedRadioButton
+                        val checkedRadioButton = binding.nrgInput.checkedRadioButton
                         checkedRadioButton?.let {
                             viewModel.answer = it.text as String
                         }
@@ -84,6 +85,22 @@ class QuestionFragment : Fragment() {
                 else -> throw IllegalArgumentException("Unmanaged click")
             }
 
+        })
+
+        // Watching for time input click
+        viewModel.getTimeInputClick().observe(this, Observer { isShow ->
+            val dialog = TimePickerDialog(
+                this.activity,
+                TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                    viewModel.answer = "$hourOfDay:$minute"
+                    callback.onNextButtonClicked(Answer(viewModel.question!!, viewModel.answer))
+                },
+                0,
+                0,
+                false
+            )
+
+            dialog.show()
         })
     }
 

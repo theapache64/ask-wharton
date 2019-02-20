@@ -13,6 +13,8 @@
 
         <import type="com.theah64.qpool.models.questions.CheckBoxQuestion" />
 
+        <import type="com.theah64.qpool.models.questions.TimeQuestion" />
+
         <variable
             name="viewModel"
             type="com.theah64.qpool.ui.activities.qpool.fragments.QuestionViewModel" />
@@ -91,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="til_input,radioGroup,mcb_option_2,mcb_option_4,mcb_option_1,mcb_option_3"
+                    app:constraint_referenced_ids="til_input,nrg_input,mcb_option_2,mcb_option_4,mcb_option_1,mcb_option_3,mb_time"
                     tools:layout_editor_absoluteX="10dp"
                     tools:layout_editor_absoluteY="144dp" />
 
@@ -117,10 +119,20 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--Time input-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mb_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()-> viewModel.onTimeInputClicked()}"
+                    android:text="@string/label_enter_time"
+                    android:visibility="@{viewModel.question instanceof TimeQuestion ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_question" />
 
                 <!--Radio Input-->
                 <com.theah64.qpool.utils.NestedRadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/nrg_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:visibility="@{viewModel.question instanceof RadioQuestion ? View.VISIBLE : View.GONE }"
