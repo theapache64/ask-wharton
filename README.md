@@ -3,7 +3,7 @@
 An android questionnaire survey application, specially built for Jake Wharton.
 
 
-### Working
+### Project Info
 
 - Architectural Pattern : **MVVM**
 - more details coming soon
