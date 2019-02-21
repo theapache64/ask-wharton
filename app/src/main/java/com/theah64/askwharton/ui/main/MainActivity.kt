@@ -1,12 +1,21 @@
-package com.theah64.askwharton
+package com.theah64.askwharton.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.theah64.askwharton.R
 import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.*
 import com.theah64.qpool.ui.activities.qpool.QPoolActivity
 
 class MainActivity : QPoolActivity() {
+
+    companion object {
+        fun getStartIntent(context: Context): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            return intent
+        }
+    }
 
     override fun onSurveyFinished(answers: List<Answer>) {
 

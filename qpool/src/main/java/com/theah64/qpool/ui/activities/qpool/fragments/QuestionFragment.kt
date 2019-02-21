@@ -22,10 +22,6 @@ import com.theah64.qpool.models.questions.RadioQuestion
 import com.theah64.qpool.ui.activities.qpool.Callback
 import kotlinx.android.synthetic.main.fragment_question.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -94,7 +90,8 @@ class QuestionFragment : Fragment() {
                 val dialog = TimePickerDialog(
                     this.activity,
                     TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                        viewModel.answer = "$hourOfDay:$minute"
+                        val minuteString = if (minute == 0) "00" else "$minute"
+                        viewModel.answer = "$hourOfDay:$minuteString"
                         mb_time.text = viewModel.answer
                     },
                     0,

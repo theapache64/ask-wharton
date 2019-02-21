@@ -1,26 +1,20 @@
 package com.theah64.qpool.ui.activities.qpool
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.ActivityQpoolBinding
 import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.ui.activities.qpool.adapters.QuestionPagerAdapter
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import com.theah64.qpool.ui.base.BaseAppCompatActivity
 
-abstract class QPoolActivity : AppCompatActivity(), Callback {
+abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
 
     private lateinit var binding: ActivityQpoolBinding
     private lateinit var adapter: QuestionPagerAdapter
     private val answersMap = mutableMapOf<Int, Answer>()
-
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
