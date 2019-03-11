@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.ActivityQpoolBinding
 import com.theah64.qpool.models.Answer
@@ -17,12 +18,13 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
 
     private lateinit var binding: ActivityQpoolBinding
     private lateinit var adapter: QuestionPagerAdapter
-    private val answersMap = mutableMapOf<Int, Answer>()
-
+    private lateinit var viewModel: QPoolViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_qpool)
+        this.viewModel = ViewModelProviders.of(this).get(QPoolViewModel::class.java)
+
 
         // Attaching question adapter
         this.adapter = QuestionPagerAdapter(getQuestions(), supportFragmentManager)
@@ -68,7 +70,7 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
         val currentItem = binding.vpQuestions.currentItem
 
         // Saving answer
-        answersMap[currentItem] = answer
+        viewModel.answersMap[currentItem] = answer
 
 
         // Moving to next question
@@ -78,7 +80,7 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
             binding.vpQuestions.currentItem = nextPos
         } else {
             // Survey finished
-            onSurveyFinished(answersMap.values.toList())
+            onSurveyFinished(viewModel.answersMap.values.toList())
         }
     }
 
