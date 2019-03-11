@@ -1,7 +1,9 @@
 package com.theah64.qpool.ui.activities.qpool
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.theah64.qpool.R
 import com.theah64.qpool.databinding.ActivityQpoolBinding
@@ -9,6 +11,7 @@ import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.Question
 import com.theah64.qpool.ui.activities.qpool.adapters.QuestionPagerAdapter
 import com.theah64.qpool.ui.base.BaseAppCompatActivity
+import com.theah64.qpool.utils.PreferenceUtils
 
 abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
 
@@ -24,6 +27,34 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
         // Attaching question adapter
         this.adapter = QuestionPagerAdapter(getQuestions(), supportFragmentManager)
         binding.vpQuestions.adapter = adapter
+
+        // Showing welcome message
+        getWelcomeMessageWithTitle()?.let { welcomeMessage ->
+            showMessage(welcomeMessage)
+        }
+    }
+
+    private fun showMessage(welcomeMessage: Pair<String, String>) {
+
+        val preferenceUtils = PreferenceUtils(this)
+
+        if (preferenceUtils.isFirstRun()) {
+
+            val title = welcomeMessage.first
+            val message = welcomeMessage.second
+
+            val alertDialog = AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(R.string.action_dismiss) { _, _ ->
+                    preferenceUtils.setFirstRun(false)
+                }
+                .create()
+
+            alertDialog.show()
+        }
+
+
     }
 
     abstract fun getQuestions(): Array<out Question>
@@ -63,6 +94,12 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
         }
     }
 
+    /**
+     * To show welcome message. First param will be the title and second will be the message.
+     */
+    open fun getWelcomeMessageWithTitle(): Pair<String, String>? {
+        return null
+    }
 
 }
 

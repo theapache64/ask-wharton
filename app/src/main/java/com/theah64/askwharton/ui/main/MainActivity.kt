@@ -55,6 +55,10 @@ class MainActivity : QPoolActivity() {
         )
     }
 
+    override fun getWelcomeMessageWithTitle(): Pair<String, String>? {
+        return Pair("Hi", "Thank you for installing this app")
+    }
+
     /**
      * When survery gets finished, this method will get invoked
      */
