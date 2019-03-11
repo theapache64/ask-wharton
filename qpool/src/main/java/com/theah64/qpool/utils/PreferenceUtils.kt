@@ -4,6 +4,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 
 class PreferenceUtils(private val context: Context) {
+
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun isFirstRun(): Boolean {

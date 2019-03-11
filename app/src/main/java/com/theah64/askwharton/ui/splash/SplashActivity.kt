@@ -9,6 +9,7 @@ import com.theah64.askwharton.BuildConfig
 import com.theah64.askwharton.R
 import com.theah64.askwharton.ui.main.MainActivity
 import com.theah64.qpool.ui.base.BaseAppCompatActivity
+import com.theah64.qpool.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseAppCompatActivity() {
@@ -27,9 +28,12 @@ class SplashActivity : BaseAppCompatActivity() {
 
         tv_version.startAnimation(blinkAnimation)
 
+        val isFirstRun = PreferenceUtils(this).isFirstRun()
+        val splashDuration = if (isFirstRun) 3000L else 1500L
+
         Handler().postDelayed({
             startActivity(MainActivity.getStartIntent(this))
             finish()
-        }, 3000)
+        }, splashDuration)
     }
 }
