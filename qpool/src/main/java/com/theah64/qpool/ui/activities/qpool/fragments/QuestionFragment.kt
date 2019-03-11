@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.OnRebindCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -162,7 +161,7 @@ class QuestionFragment : Fragment() {
                 // Watching for 'None of the above'
                 binding.mcbOption4.setOnCheckedChangeListener { buttonView, isChecked ->
 
-                    if (buttonView.text == Question.VALUE_NONE_OF_THE_ABOVE) {
+                    if (buttonView.text == Question.OPTION_NONE_OF_THE_ABOVE) {
 
                         binding.mcbOption1.isEnabled = !isChecked
                         binding.mcbOption2.isEnabled = !isChecked
