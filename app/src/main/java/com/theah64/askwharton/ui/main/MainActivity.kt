@@ -56,7 +56,7 @@ class MainActivity : QPoolActivity() {
     }
 
     override fun getWelcomeMessageWithTitle(): Pair<String, String>? {
-        return Pair("Hi", "Thank you for installing this app")
+        return Pair("Hi Jake", "Thank you for trying this app")
     }
 
     /**
