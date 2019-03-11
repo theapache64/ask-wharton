@@ -7,6 +7,7 @@ import com.theah64.askwharton.R
 import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.*
 import com.theah64.qpool.ui.activities.qpool.QPoolActivity
+import com.theah64.qpool.ui.activities.qpool.fragments.QuestionFragment
 
 class MainActivity : QPoolActivity() {
 
@@ -53,7 +54,7 @@ class MainActivity : QPoolActivity() {
                 option1 = getString(R.string.age_20),
                 option2 = getString(R.string.age_23),
                 option3 = getString(R.string.age_25),
-                option4 = getString(R.string.option_none_of_the_above)
+                option4 = Question.VALUE_NONE_OF_THE_ABOVE
             ),
 
             // Hobby
@@ -62,7 +63,7 @@ class MainActivity : QPoolActivity() {
                 option1 = getString(R.string.hobby_gaming),
                 option2 = getString(R.string.hobby_writing),
                 option3 = getString(R.string.hobby_reading),
-                option4 = getString(R.string.option_none_of_the_above)
+                option4 = Question.VALUE_NONE_OF_THE_ABOVE
             ),
 
             // Sleep time

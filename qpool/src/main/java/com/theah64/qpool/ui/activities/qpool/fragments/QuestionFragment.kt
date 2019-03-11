@@ -4,11 +4,13 @@ package com.theah64.qpool.ui.activities.qpool.fragments
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.OnRebindCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -105,6 +107,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun getCheckBoxAnswer(): String {
+
         val stringBuilder = StringBuilder()
         val mcbs = arrayOf(
             binding.mcbOption1,
@@ -123,6 +126,8 @@ class QuestionFragment : Fragment() {
 
     lateinit var binding: FragmentQuestionBinding
 
+    private lateinit var question: Question
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -132,9 +137,11 @@ class QuestionFragment : Fragment() {
         this.binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         arguments?.let {
-            val question = it.get(Question.KEY) as Question
+            this.question = it.get(Question.KEY) as Question
             viewModel.question = question
             val curPosQues = it.getInt(KEY_CURRENT_QUESTION_POSITION)
             val totalQuestions = it.getInt(KEY_TOTAL_QUESTIONS)
@@ -145,20 +152,51 @@ class QuestionFragment : Fragment() {
             Glide.with(binding.ivImage)
                 .load(question.imageUrl)
                 .into(binding.ivImage)
+
+            Handler().postDelayed({
+
+            }, 1000)
+
+            if (question is CheckBoxQuestion) {
+
+                // Watching for 'None of the above'
+                binding.mcbOption4.setOnCheckedChangeListener { buttonView, isChecked ->
+
+                    if (buttonView.text == Question.VALUE_NONE_OF_THE_ABOVE) {
+
+                        binding.mcbOption1.isEnabled = !isChecked
+                        binding.mcbOption2.isEnabled = !isChecked
+                        binding.mcbOption3.isEnabled = !isChecked
+
+                        if (isChecked) {
+                            binding.mcbOption1.isChecked = false
+                            binding.mcbOption2.isChecked = false
+                            binding.mcbOption3.isChecked = false
+                        }
+
+                    }
+
+                }
+            }
         }
 
 
 
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
     }
 
     companion object {
 
         const val KEY_CURRENT_QUESTION_POSITION = "current_question_position"
         const val KEY_TOTAL_QUESTIONS = "total_questions"
+
 
         /**
          * Creates new instance of the question fragment

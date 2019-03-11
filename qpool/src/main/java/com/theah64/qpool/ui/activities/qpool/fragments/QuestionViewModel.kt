@@ -65,8 +65,6 @@ class QuestionViewModel : ViewModel() {
         textPerc = "${curPosQues + 1}/$totalQuestions"
         val x = ((curPosQues + 1) * 100) / totalQuestions
         intPerc = x
-
-
     }
 
 

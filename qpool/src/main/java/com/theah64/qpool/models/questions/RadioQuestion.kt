@@ -9,4 +9,8 @@ open class RadioQuestion(
     val option4: String,
 
     imageUrl: String? = null
-) : Question(question, imageUrl)
+) : Question(question, imageUrl) {
+    init {
+        super.checkNoneOfTheAboveConstraints(option1, option2, option3)
+    }
+}
