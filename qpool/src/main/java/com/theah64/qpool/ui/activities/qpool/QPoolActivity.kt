@@ -48,6 +48,7 @@ abstract class QPoolActivity : BaseAppCompatActivity(), Callback {
             val alertDialog = AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(R.string.action_dismiss) { _, _ ->
                     preferenceUtils.setFirstRun(false)
                 }
