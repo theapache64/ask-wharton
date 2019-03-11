@@ -21,8 +21,8 @@ class MainActivity : QPoolActivity() {
 
         val mailIntent = Intent(Intent.ACTION_SEND)
         mailIntent.data = Uri.parse("mailto:")
-        mailIntent.type = "text/plain"
-        mailIntent.putExtra(Intent.EXTRA_EMAIL, "theapache64@gmail.com")
+        mailIntent.type = "message/rfc822"
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("theapache64@gmail.com"))
         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "JakeWharton Answered!")
         mailIntent.putExtra(Intent.EXTRA_TEXT, getFormatted(answers))
         startActivity(Intent.createChooser(mailIntent, "Choose email client"))
@@ -31,7 +31,8 @@ class MainActivity : QPoolActivity() {
     private fun getFormatted(answers: List<Answer>): String? {
         val stringBuilder = StringBuilder()
         answers.forEach {
-            stringBuilder.append("${it.question.question}\n${it.answer}\n\n")
+            val answer = if (it.answer.trim().isEmpty()) "-" else it.answer
+            stringBuilder.append("Q. ${it.question.question}\nA. ${answer}\n\n")
         }
         return stringBuilder.toString()
     }
