@@ -17,27 +17,9 @@ class MainActivity : QPoolActivity() {
         }
     }
 
-    override fun onSurveyFinished(answers: List<Answer>) {
-
-        val mailIntent = Intent(Intent.ACTION_SEND)
-        mailIntent.data = Uri.parse("mailto:")
-        mailIntent.type = "message/rfc822"
-        mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("theapache64@gmail.com"))
-        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "JakeWharton Answered!")
-        mailIntent.putExtra(Intent.EXTRA_TEXT, getFormatted(answers))
-        startActivity(Intent.createChooser(mailIntent, "Choose email client"))
-    }
-
-    private fun getFormatted(answers: List<Answer>): String? {
-        val stringBuilder = StringBuilder()
-        answers.forEach {
-            val answer = if (it.answer.trim().isEmpty()) "-" else it.answer
-            stringBuilder.append("Q. ${it.question.question}\nA. ${answer}\n\n")
-        }
-        return stringBuilder.toString()
-    }
-
-
+    /**
+     * Questions to be asked
+     */
     override fun getQuestions(): Array<out Question> {
 
         //TODO: Replace dummy questions with real questions
@@ -72,4 +54,35 @@ class MainActivity : QPoolActivity() {
             )
         )
     }
+
+    /**
+     * When survery gets finished, this method will get invoked
+     */
+    override fun onSurveyFinished(answers: List<Answer>) {
+
+        val mailIntent = Intent(Intent.ACTION_SEND)
+        mailIntent.data = Uri.parse("mailto:")
+        mailIntent.type = "message/rfc822"
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("theapache64@gmail.com"))
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "JakeWharton Answered!")
+        mailIntent.putExtra(Intent.EXTRA_TEXT, getMailBody(answers))
+        startActivity(Intent.createChooser(mailIntent, "Choose email client"))
+    }
+
+    /**
+     * Simple method to create mail body
+     */
+    private fun getMailBody(answers: List<Answer>): String? {
+        val stringBuilder = StringBuilder()
+
+        stringBuilder.append("Hi theapache64, \nI've finished your interview. \n\n")
+
+        answers.forEach {
+            val answer = if (it.answer.trim().isEmpty()) "-" else it.answer
+            stringBuilder.append("Q. ${it.question.question}\nA. ${answer}\n\n")
+        }
+
+        return stringBuilder.toString()
+    }
+
 }
