@@ -24,42 +24,57 @@ class MainActivity : QPoolActivity() {
 
         //TODO: Replace dummy questions with real questions
         return arrayOf(
-            // Name
-            FactualQuestion(
-                question = getString(R.string.q_name),
-                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/1.jpg"
-            ),
 
-            // Age
+            // Favorite Language
             RadioQuestion(
-                question = getString(R.string.q_age),
-                option1 = getString(R.string.age_20),
-                option2 = getString(R.string.age_23),
-                option3 = getString(R.string.age_25),
-                option4 = Question.OPTION_NONE_OF_THE_ABOVE,
-                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/2.jpg"
+                question = getString(R.string.question_fav_lang),
+                option1 = getString(R.string.lang_kotlin),
+                option2 = getString(R.string.lang_java),
+                option3 = getString(R.string.lang_python),
+                option4 = getString(R.string.option_other),
+                imageUrl = getImageUrl(1)
             ),
 
-            // Hobby
-            CheckBoxQuestion(
-                question = getString(R.string.q_hobby),
-                option1 = getString(R.string.hobby_gaming),
-                option2 = getString(R.string.hobby_writing),
-                option3 = getString(R.string.hobby_reading),
-                option4 = Question.OPTION_NONE_OF_THE_ABOVE,
-                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/3.jpg"
+            // Favorite Project
+            RadioQuestion(
+                question = getString(R.string.question_fav_project),
+                option1 = getString(R.string.project_retrofit),
+                option2 = getString(R.string.project_rx_android),
+                option3 = getString(R.string.project_butterknife),
+                option4 = getString(R.string.option_other),
+                imageUrl = getImageUrl(2)
+            ),
+
+            // Favorite Food
+            FactualQuestion(
+                question = getString(R.string.question_fav_food),
+                imageUrl = getImageUrl(3)
             ),
 
             // Sleep time
             TimeQuestion(
-                question = getString(R.string.What_time_do_you_sleep),
-                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/4.jpg"
+                question = getString(R.string.question_sleep_time),
+                imageUrl = getImageUrl(4)
+            ),
+
+            // Wake-up time
+            TimeQuestion(
+                question = getString(R.string.question_wake_up_time),
+                imageUrl = getImageUrl(5)
             )
         )
     }
 
+    /**
+     * Returns valid image from github
+     */
+    private fun getImageUrl(id: Int): String? {
+        require(id in 1..8) { "id should be between 1 and 8, but passed $id" }
+        return "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/$id.jpg"
+    }
+
     override fun getWelcomeMessageWithTitle(): Pair<String, String>? {
-        return Pair("Hi Jake", "Thank you for trying this app")
+        return Pair(getString(R.string.welcome_title_hi_jake), getString(R.string.welcome_message))
     }
 
     /**
@@ -71,7 +86,7 @@ class MainActivity : QPoolActivity() {
         mailIntent.data = Uri.parse("mailto:")
         mailIntent.type = "message/rfc822"
         mailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("theapache64@gmail.com"))
-        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "JakeWharton Answered!")
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Jake Wharton Answered!")
         mailIntent.putExtra(Intent.EXTRA_TEXT, getMailBody(answers))
         startActivity(Intent.createChooser(mailIntent, "Choose email client"))
     }
