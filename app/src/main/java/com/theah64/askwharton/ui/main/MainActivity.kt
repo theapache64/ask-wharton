@@ -27,7 +27,7 @@ class MainActivity : QPoolActivity() {
             // Name
             FactualQuestion(
                 question = getString(R.string.q_name),
-                imageUrl = "https://i.stack.imgur.com/7VcXZ.jpg"
+                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/1.jpg"
             ),
 
             // Age
@@ -36,7 +36,8 @@ class MainActivity : QPoolActivity() {
                 option1 = getString(R.string.age_20),
                 option2 = getString(R.string.age_23),
                 option3 = getString(R.string.age_25),
-                option4 = Question.OPTION_NONE_OF_THE_ABOVE
+                option4 = Question.OPTION_NONE_OF_THE_ABOVE,
+                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/2.jpg"
             ),
 
             // Hobby
@@ -45,12 +46,14 @@ class MainActivity : QPoolActivity() {
                 option1 = getString(R.string.hobby_gaming),
                 option2 = getString(R.string.hobby_writing),
                 option3 = getString(R.string.hobby_reading),
-                option4 = Question.OPTION_NONE_OF_THE_ABOVE
+                option4 = Question.OPTION_NONE_OF_THE_ABOVE,
+                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/3.jpg"
             ),
 
             // Sleep time
             TimeQuestion(
-                question = getString(R.string.What_time_do_you_sleep)
+                question = getString(R.string.What_time_do_you_sleep),
+                imageUrl = "https://raw.githubusercontent.com/theapache64/ask-wharton/master/extras/photos/4.jpg"
             )
         )
     }
