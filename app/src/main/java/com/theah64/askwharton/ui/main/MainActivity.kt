@@ -27,39 +27,48 @@ class MainActivity : QPoolActivity() {
 
             // Favorite Language
             RadioQuestion(
-                question = getString(R.string.question_fav_lang),
-                option1 = getString(R.string.lang_kotlin),
-                option2 = getString(R.string.lang_java),
-                option3 = getString(R.string.lang_python),
-                option4 = getString(R.string.option_other),
+                question = "Which is your favorite language ?",
+                option1 = "Kotlin",
+                option2 = "Java",
+                option3 = "Python",
+                option4 = "Other",
                 imageUrl = getImageUrl(1)
             ),
 
             // Favorite Project
             RadioQuestion(
-                question = getString(R.string.question_fav_project),
-                option1 = getString(R.string.project_retrofit),
-                option2 = getString(R.string.project_rx_android),
-                option3 = getString(R.string.project_butterknife),
-                option4 = getString(R.string.option_other),
+                question = "Which is your favorite project ?",
+                option1 = "Retrofit",
+                option2 = "RxAndroid",
+                option3 = "ButterKnife",
+                option4 = "Other",
                 imageUrl = getImageUrl(2)
             ),
 
             // Favorite Food
             FactualQuestion(
-                question = getString(R.string.question_fav_food),
+                question = "Which is your favorite food ?",
                 imageUrl = getImageUrl(3)
+            ),
+
+            // Hobby
+            CheckBoxQuestion(
+                question = "What are your hobbies other than programming ?",
+                option1 = "Gaming",
+                option2 = "Reading",
+                option3 = "Travelling",
+                option4 = getString(R.string.option_none)
             ),
 
             // Sleep time
             TimeQuestion(
-                question = getString(R.string.question_sleep_time),
+                question = "What time do you sleep ?",
                 imageUrl = getImageUrl(4)
             ),
 
             // Wake-up time
             TimeQuestion(
-                question = getString(R.string.question_wake_up_time),
+                question = "What time do you wake up?",
                 imageUrl = getImageUrl(5)
             )
         )
@@ -74,7 +83,7 @@ class MainActivity : QPoolActivity() {
     }
 
     override fun getWelcomeMessageWithTitle(): Pair<String, String>? {
-        return Pair(getString(R.string.welcome_title_hi_jake), getString(R.string.welcome_message))
+        return Pair("Hi Jake", "Thank you for trying this app! :)")
     }
 
     /**
