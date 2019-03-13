@@ -1,8 +1,10 @@
 package com.theah64.askwharton.ui.main
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AlertDialog
 import com.theah64.askwharton.R
 import com.theah64.qpool.models.Answer
 import com.theah64.qpool.models.questions.*
@@ -57,7 +59,8 @@ class MainActivity : QPoolActivity() {
                 option1 = "Gaming",
                 option2 = "Reading",
                 option3 = "Travelling",
-                option4 = getString(R.string.option_none)
+                option4 = getString(R.string.option_none),
+                imageUrl = getImageUrl(6)
             ),
 
             // Sleep time
@@ -91,6 +94,19 @@ class MainActivity : QPoolActivity() {
      */
     override fun onSurveyFinished(answers: List<Answer>) {
 
+        // Showing a thank you dialog
+        val thankYouDialog = AlertDialog.Builder(this)
+            .setTitle("Congratulations")
+            .setCancelable(false)
+            .setMessage("You've finished the interview. Next, choose an email client to send the interview data. ")
+            .setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
+                sendEmail(answers)
+            }.create()
+
+        thankYouDialog.show()
+    }
+
+    private fun sendEmail(answers: List<Answer>) {
         val mailIntent = Intent(Intent.ACTION_SEND)
         mailIntent.data = Uri.parse("mailto:")
         mailIntent.type = "message/rfc822"
