@@ -25,7 +25,6 @@ class QuestionViewModel : ViewModel() {
     var question: Question? = null
         set(value) {
 
-
             when (value) {
 
                 is FactualQuestion -> factualQuestion = value

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import com.theah64.askwharton.BuildConfig
 import com.theah64.askwharton.R
 import com.theah64.askwharton.ui.main.MainActivity

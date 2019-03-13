@@ -1,15 +1,15 @@
 package com.theah64.qpool.utils
 
 import android.content.Context
-import android.view.ViewGroup
-import android.widget.RadioButton
-import android.view.ViewTreeObserver
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.annotation.RequiresApi
 
 
 class NestedRadioGroup : RadioGroup {

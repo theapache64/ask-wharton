@@ -1,6 +1,5 @@
 package com.theah64.qpool.ui.activities.qpool
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog

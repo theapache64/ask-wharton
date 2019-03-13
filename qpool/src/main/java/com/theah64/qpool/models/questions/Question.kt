@@ -1,7 +1,6 @@
 package com.theah64.qpool.models.questions
 
 import java.io.Serializable
-import java.lang.IllegalArgumentException
 
 open class Question(
     val question: String,

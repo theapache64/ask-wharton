@@ -4,7 +4,6 @@ package com.theah64.qpool.ui.activities.qpool.fragments
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -152,10 +151,6 @@ class QuestionFragment : Fragment() {
                 .load(question.imageUrl)
                 .into(binding.ivImage)
 
-            Handler().postDelayed({
-
-            }, 1000)
-
             if (question is CheckBoxQuestion) {
 
                 // Watching for 'None of the above'
@@ -179,16 +174,7 @@ class QuestionFragment : Fragment() {
             }
         }
 
-
-
-
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-
     }
 
     companion object {
